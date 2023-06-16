@@ -1,0 +1,112 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>05createOptionObject.html</title>
+    <style>
+        #idDiv {
+            height: 50px;
+            color: black;
+            font-size:2em;
+        }
+        fieldset{
+            margin-left:auto;
+            margin-right:auto;
+            width:300px;
+            border:2px solid gray; 
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="01_9x9.html">01_9x9.html</a>
+    <a href="02_FormCheck.html">02_FormCheck.html</a>
+    <a href="03_star.html">03_star.html</a>
+    <a href="04_.html">04_.html</a>
+    <a href="05_Date.html">05_Date.html</a>
+    <fieldset id="bagDiv">
+        <select id="idSelectYear"></select>
+        <select id="idSelectMonth"></select>
+        <select id="idSelectDay"></select>
+        <div id="idDiv"></div>
+    </fieldset>
+
+    <script>
+        //for (let i = 1; i <= 12; i++) {   //新增月
+        //    let opt = document.createElement("option");  //<option></option>
+        //    //opt.setAttribute("value", i);  //<option value=1></option>
+        //    //let optTxt = document.createTextNode(i);  //1
+        //    //opt.appendChild(optTxt);  //<option value=1>1</option>
+        //    opt.value = i;   //<option value=1></option>
+        //    opt.innerHTML = i; //<option value=1>1</option>
+        //    document.getElementById('idSelectMonth').appendChild(opt);  //
+        //}
+
+
+        let theYear = document.querySelector("#idSelectYear");
+        let theMonth = document.querySelector("#idSelectMonth");
+        let theDay = document.querySelector("#idSelectDay");
+
+        let yy, mm, d, dno;
+        theYear.addEventListener("change", addDay);
+        theMonth.addEventListener("change", addDay);
+        let docFrag = document.createDocumentFragment();
+        for (let i = 2010; i <= 2030; i++) {   //新增年
+            let opt = document.createElement("option");  //<option></option>
+            opt.setAttribute("value", i);  //<option value=1></option>
+            let optTxt = document.createTextNode(i);  //1
+            opt.appendChild(optTxt);  //<option value=1>1</option>
+            //opt.value = i;
+            //opt.innerHTML = i;
+            docFrag.appendChild(opt);  //
+        }
+        theYear.appendChild(docFrag);
+
+        docFrag = document.createDocumentFragment();
+        for (let i = 1; i <= 12; i++) {   //新增月
+            let opt = document.createElement("option");  //<option></option>
+            opt.setAttribute("value", i);  //<option value=1></option>
+            let optTxt = document.createTextNode(i);  //1
+            opt.appendChild(optTxt);  //<option value=1>1</option>
+            //opt.value = i;
+            //opt.innerHTML = i;
+            docFrag.appendChild(opt);  //
+        }
+        theMonth.appendChild(docFrag);
+
+        addDay();
+        d = new Date(2022, 1, 0);  //2022/2/0  2月的第0天，就是1月最後一天
+        console.log(d);
+        function addDay() {
+
+            yy = theYear.value;
+            mm = theMonth.value;
+            console.log(yy, mm);
+            d = new Date(yy, mm, 0);
+            dno = d.getDate();
+            console.log(dno);
+
+            docFrag = document.createDocumentFragment();
+            for (let i = 0; i <= dno; i++) {
+                let opt = document.createElement("option");
+                opt.setAttribute("valve", i);
+                let optTxt = document.createTextNode(i);
+                opt.appendChild(optTxt);
+                docFrag.appendChild(opt);
+            }
+            document.getElementById('idSelectDay').innerHTML = "";
+            theDay.appendChild(docFrag);
+        }
+        theYear.addEventListener("change", addtext);
+        theMonth.addEventListener("change", addtext);
+        theDay.addEventListener("change", addtext);
+
+        function addtext() {
+            dd = theDay.value;
+            document.getElementById('idDiv').innerHTML = `西元${yy}年${mm}月${dd}日`;
+        }
+
+    </script>
+</body>
+
+</html>

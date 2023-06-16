@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .s{
+            filter: grayscale(1); /*沒有任何色彩的黑白影像*/
+            width :150px;
+        }
+        .n {
+            filter: grayscale(0); /*顏色不變*/
+            width :150px;
+        }
+        div{
+            float:left;
+            color:white;
+        }
+        figure{
+            border:2px
+        }
+        h1 {
+            font-family: fantasy;
+            background-color: yellow;
+            border: 2px initial black;
+            margin-left: 300px;
+            margin-right: 300px;
+            border-radius:5px;
+        }
+        fieldset{
+            background-color:black;
+            border-radius:5PX;
+            width:850px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="01_9x9.html">01_9x9.html</a>
+    <a href="02_FormCheck.html">02_FormCheck.html</a>
+    <a href="03_star.html">03_star.html</a>
+    <a href="04_.html">04_.html</a>
+    <a href="05_Date.html">05_Date.html</a>
+    <fieldset>
+
+
+        <h1>GTA通緝星級</h1>
+
+        <figure>
+            <img id="idstar1" class="s" src="https://i.gifer.com/ZalX.gif" />
+            <img id="idstar2" class="s" src="https://i.gifer.com/ZalX.gif" />
+            <img id="idstar3" class="s" src="https://i.gifer.com/ZalX.gif" />
+            <img id="idstar4" class="s" src="https://i.gifer.com/ZalX.gif" />
+            <img id="idstar5" class="s" src="https://i.gifer.com/ZalX.gif" />
+        </figure>
+
+        <h2>單擊星星可評分，雙擊星星重製</h2>
+        <div width="100%">
+            <h2 style="margin-left:200px">通緝為...</h2>
+        </div>
+        <div>
+            <h2 id="score"></h2>
+        </div>
+        <div>
+            <h2>顆星</h2>
+        </div>
+        <div>
+            <h2 id="exec"></h2>
+        </div>
+    </fieldset>
+    <script>
+        document.getElementById("idstar1").addEventListener("click", mouseClicked1);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar2").addEventListener("click", mouseClicked2);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar3").addEventListener("click", mouseClicked3);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar4").addEventListener("click", mouseClicked4);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar5").addEventListener("click", mouseClicked5);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar1").addEventListener("dblclick", mousedblclick);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar2").addEventListener("dblclick", mousedblclick);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar3").addEventListener("dblclick", mousedblclick);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar4").addEventListener("dblclick", mousedblclick);  //事件繫結，滑鼠滑入
+        document.getElementById("idstar5").addEventListener("dblclick", mousedblclick);  //事件繫結，滑鼠滑入
+
+        function mouseClicked1() {
+            document.getElementById("idstar1").className = "n";
+            document.getElementById("idstar2").className = "s";
+            document.getElementById("idstar3").className = "s";
+            document.getElementById("idstar4").className = "s";
+            document.getElementById("idstar5").className = "s";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "1";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "出動地方員警配手槍";
+        }
+        function mouseClicked2() {
+            document.getElementById("idstar1").className = "n";
+            document.getElementById("idstar2").className = "n";
+            document.getElementById("idstar3").className = "s";
+            document.getElementById("idstar4").className = "s";
+            document.getElementById("idstar5").className = "s";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "2";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "出動警車員警配霞彈槍";
+        }
+        function mouseClicked3() {
+            document.getElementById("idstar1").className = "n";
+            document.getElementById("idstar2").className = "n";
+            document.getElementById("idstar3").className = "n";
+            document.getElementById("idstar4").className = "s";
+            document.getElementById("idstar5").className = "s";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "3";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "出動直升機S.W.A.T配備衝槍";
+        }
+        function mouseClicked4() {
+            document.getElementById("idstar1").className = "n";
+            document.getElementById("idstar2").className = "n";
+            document.getElementById("idstar3").className = "n";
+            document.getElementById("idstar4").className = "n";
+            document.getElementById("idstar5").className = "s";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "4";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "出動重型卡車特警N.O.O.S.E配步槍";
+        }
+        function mouseClicked5() {
+            document.getElementById("idstar1").className = "n";
+            document.getElementById("idstar2").className = "n";
+            document.getElementById("idstar3").className = "n";
+            document.getElementById("idstar4").className = "n";
+            document.getElementById("idstar5").className = "n";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "5";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "出動FIB";
+        }
+
+        function mousedblclick() {
+            document.getElementById("idstar1").className = "s";
+            document.getElementById("idstar2").className = "s";
+            document.getElementById("idstar3").className = "s";
+            document.getElementById("idstar4").className = "s";
+            document.getElementById("idstar5").className = "s";
+            let sp = document.getElementById("score");
+            sp.innerHTML = "?";
+            let ep = document.getElementById("exec");
+            ep.innerHTML = "";
+        }
+
+    </script>
+</body>
+</html>

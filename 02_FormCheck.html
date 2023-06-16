@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Form Check</title>
+    <style>
+        fieldset {
+            width: 500px;
+            border: 3px solid #ADADAD;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h6 {
+            margin: auto;
+            opacity: 0.5
+        }
+    </style>
+</head>
+<body>
+    <a href="01_9x9.html">01_9x9.html</a>
+    <a href="02_FormCheck.html">02_FormCheck.html</a>
+    <a href="03_star.html">03_star.html</a>
+    <a href="04_.html">04_.html</a>
+    <a href="05_Date.html">05_Date.html</a>
+    <fieldset>
+        <legend>Form Check</legend>
+        <div>
+            <label for="Acct">姓名:</label><input type="text" name="account" id="Acct" onblur="checkAcct()" /><span id="AcctShow"></span><br />
+        </div>
+        <h6>(1.不可空白2.至少兩個字以上3.必須全部為中文字)</h6>
+        <hr />
+        <div>
+            <label for="pwd">密碼:</label><input type="password" name="pwd1" id="pwd" onblur="checkPwd()" /><span id="PwdShow"></span><br />
+        </div>
+        <h6>(1.不可空白2.至少6個字且必須包含英文數字、特殊字元[!@#$%^&*])</h6>
+        <hr />
+        <div>
+            <label for="date">date:</label><input type="text" id="date"><span id="DateShow"></span><br />
+        </div>
+        <h6>(格式:西元年/月/日(yyyy/mm/dd)</h6>
+
+        <input type="button" id="idbut" value="sumit" onclick="checkAcct(), checkPwd(), checkDate()" />
+    </fieldset>
+    <script>
+
+
+        function checkAcct() {
+            let AcctObj = document.getElementById("Acct");
+            let AcctObjVal = AcctObj.value;
+            let sp = document.getElementById("AcctShow");
+            let AcctObjValLen = AcctObjVal.length;
+
+            if (AcctObjVal == "") {
+                sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/906/906794.png' width='15px'>請輸入姓名";
+            }
+            else if (AcctObjValLen < 2) {
+                sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/906/906794.png' width='15px'>姓名須超過兩個中文字";
+            }
+            else if (AcctObjValLen >= 2) {
+                for (let i = 0; i < AcctObjValLen; i++) {
+                    ch = AcctObjVal.charCodeAt(i);
+                    if (ch >= 0x4e00 && ch <= 0x9fff) {
+                        sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/1442/1442912.png' width='15px'>正確無誤"
+                        console.log(ch)
+                    } else {
+                        sp.innerHTML = "<img src='https://cdn-icons.flaticon.com/png/512/2901/premium/2901165.png?token=exp=1643037990~hmac=4b325e86cec99964f386ce9003caf9b3' width='15px'>錯誤格式"
+                    }
+                }
+            }
+        }
+
+
+        function checkPwd() {
+
+            let thePwdObj = document.getElementById("pwd"); //取得idPwd元素
+
+            let thePwdObjVal = thePwdObj.value;   /*console.log(thePwdObj);*/
+            console.log(typeof thePwdObjVal)      //取得idPwd元素值
+
+            let sp = document.getElementById("PwdShow")     //判斷元素值是否為空白，密碼長度是否大於6
+            let thePwdObjValLen = thePwdObjVal.length    //如果長度是否大於6，判斷是否包含字母、數字、特殊符號
+            let ch, flag1 = false, flag2 = false;
+            if (thePwdObjVal == "")
+                sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/906/906794.png' width='15px'>you must enter";
+            else if (thePwdObjValLen >= 6) {            /*sp.innerHTML = ">6"*/
+
+                for (let i = 0; i < thePwdObjValLen; i++) {
+                    ch = thePwdObjVal.charAt(i).toUpperCase();
+                    console.log(ch);
+                    if (ch >= "A" && ch <= "Z")
+                        flag1 = true;
+                    else if (ch >= "0" && ch <= "9")
+                        flag2 = true;
+                    if (flag1 && flag2) break;
+                }
+                if (flag1 && flag2)
+                    sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/1442/1442912.png' width='15px'>correct";
+                else
+                    sp.innerHTML = "<img src='https://cdn-icons.flaticon.com/png/512/2901/premium/2901165.png?token=exp=1643037990~hmac=4b325e86cec99964f386ce9003caf9b3' width='15px'>incorrect";
+            }
+            else {
+                sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/906/906794.png' width='15px'>password legenth morn than 6"
+            }
+        }
+
+        document.getElementById("date").addEventListener("blur", checkDate);
+        function checkDate() {
+            let DateObj = document.getElementById("date")
+            let sp = document.getElementById("DateShow");
+
+            if (DateObj.value == "") {
+                sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/906/906794.png' width='15px'>填入日期";
+            }
+            else {
+                let newDate = DateObj.value;
+                if (checkDateAll() == true && isNaN(newDate) && !isNaN(Date.parse(newDate))) {
+                    sp.innerHTML = "<img src='https://cdn-icons-png.flaticon.com/512/1442/1442912.png' width='15px'>正確日期";
+                }
+                else {
+                    sp.innerHTML = "<img src='https://cdn-icons.flaticon.com/png/512/2901/premium/2901165.png?token=exp=1643037990~hmac=4b325e86cec99964f386ce9003caf9b3' width='15px'>格式錯誤";
+                }
+
+            }
+        }
+        function checkDateAll() {
+            let DateObj = document.getElementById("date")
+            let dateObj = DateObj.value;
+            let year = dateObj.substr(0, 4)
+            let month = dateObj.substr(5, 2)
+            let day = dateObj.substr(8, 2)
+            //列出12個月，每月最大日期限制
+            let limitInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            let theYear = parseInt(year);
+            let theMonth = parseInt(month);
+            let theDay = parseInt(day);
+            let isLeap = new Date(theYear, 1, 29).getDate() === 29; // 是否為閏年?
+
+            if (isLeap) {
+                // 若為閏年，最大日期限制改為 29
+                limitInMonth[1] = 29;
+            }
+
+            // 比對該日是否超過每個月份最大日期限制
+            return theDay <= limitInMonth[theMonth - 1];
+        }
+
+
+    </script>
+</body>
+</html>

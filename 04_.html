@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        .mySlides {
+            display: none;
+        }
+        img {
+            width:50%;
+            padding-left:25%;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+        .prev:hover, .next:hover, .stop:hover {
+            background-color: rgba(0,0,0,0.8);
+            
+        }
+        .prev .stop .next{
+            font-size: 2em;
+        }
+        figure {
+            text-align:center;        
+        }
+
+    </style>
+</head>
+<body>
+    <a href="01_9x9.html">01_9x9.html</a>
+    <a href="02_FormCheck.html">02_FormCheck.html</a>
+    <a href="03_star.html">03_star.html</a>
+    <a href="04_.html">04_.html</a>
+    <a href="05_Date.html">05_Date.html</a>
+    <figure>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="stop" onclick="stopSlides()">&#9199;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <div>
+            <a href="https://www.facebook.com/minchen333/photos"><img class="mySlides" src="https://scontent.ftpe8-1.fna.fbcdn.net/v/t39.30808-6/271765233_486698592824946_8943747690907523557_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=730e14&_nc_ohc=S6eYVerrzf4AX8CiMs1&_nc_ht=scontent.ftpe8-1.fna&oh=00_AT_ksS-0au6jH_2BsB-bTxNKi8NuP2TAPWHQ7RvHviIB5w&oe=61F69547" /></a>
+        </div>
+        <div>
+            <a href="https://www.facebook.com/minchen333/photos"><img class="mySlides" src="https://scontent.ftpe8-2.fna.fbcdn.net/v/t39.30808-6/271845645_486698586158280_5576266933286739742_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=ymSZqcBIyWAAX-8VQx1&_nc_ht=scontent.ftpe8-2.fna&oh=00_AT9W72N40t406sKN-u4vEiGQfAHIp9_s_F3xXgfzw3PVAw&oe=61F73A71" /></a>
+        </div>
+        <div>
+            <a href="https://www.facebook.com/minchen333/photos "><img class="mySlides" src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t39.30808-6/271743876_486698589491613_2344817839163452683_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=-LLwFFqS0D8AX-mmivU&_nc_ht=scontent.ftpe8-3.fna&oh=00_AT8z9cKlI8cL4lZrz1AU30fvVe_c3wyfdMDzm-ZHz50djA&oe=61F61CB5" /></a>
+        </div>
+        <div>
+            <a href="https://www.facebook.com/minchen333/photos"><img class="mySlides" src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t39.30808-6/271898782_486698596158279_5686224142044547973_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=730e14&_nc_ohc=HOhAo_qihscAX-n6Btc&_nc_ht=scontent.ftpe8-4.fna&oh=00_AT_fnCUYFKlInJBjnsQRJ3tiFmzZRjY911WJSBTgW2R60w&oe=61F617DF" /></a>
+        </div>
+    </figure>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function stopSlides() {
+            clearTimeout(time);
+        }
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        var slideIndex = 0;
+        showSlidesAuto();
+
+        function showSlidesAuto() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            time = setTimeout(showSlidesAuto, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+</html>

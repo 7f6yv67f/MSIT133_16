@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>作業</title>
+    <style>
+        table {
+            border: 3px solid gold;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        tr, td {
+            border: 3px solid black;
+            background-color: cornflowerblue;
+            font-family:Arial;
+            color:blueviolet;
+        }
+        a{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <a href="01_9x9.html">01_9x9.html</a>
+    <a href="02_FormCheck.html">02_FormCheck.html</a>
+    <a href="03_star.html">03_star.html</a>
+    <a href="04_.html">04_.html</a>
+    <a href="05_Date.html">05_Date.html</a>
+
+    <script>
+        document.write('<table>');
+        document.write(' <tr>');
+        for (let i = 1; i < 10; i++) {
+            document.write('<td>');
+            for (let j = 1; j < 10; j++) {
+                document.write(`${i}x${j}=${i * j}<br>`);
+            }
+            document.write('</td>');
+        }
+        document.write('</tr>');
+        document.write('</table>');
+    </script>
+</body>
+</html>
